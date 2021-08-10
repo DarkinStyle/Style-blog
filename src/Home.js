@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { readBuilderProgram } from 'typescript';
+import BlogList from './BlogList';
 
 const Home = () => {
 
@@ -9,16 +10,12 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
     ]);
 
+    // props for bloglist: blogs={blogs}
+
     return (  
         <div className="home">
-            {blogs.map((blog) => (
-                <div className="blog-preview" key={blog.id}>
-                    <h2>{ blog.title }</h2>
-                    <p>Written by { blog.author }</p>
-                </div>
-            ))}
-            
-            
+            <BlogList blogs={blogs} title="All Blogs"/> 
+        
         </div>
     );
 }
