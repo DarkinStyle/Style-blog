@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { readBuilderProgram } from 'typescript';
 import BlogList from './BlogList';
 
@@ -10,15 +10,25 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
     ]);
 
-   const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
-   }
+    const [name, setName] = useState('mario');
+
+    const handleDelete = (id) => {
+            const newBlogs = blogs.filter(blog => blog.id !== id);
+            setBlogs(newBlogs);
+    }
+
+    useEffect(() => {
+        console.log('use effect ran');
+        console.log(name);
+    }, [name]); // ,[] is a empty dependency array that allow only initial first render
+    
+    // a value in the , [] array can trigger the render for useEffect
 
     return (  
         <div className="home">
             <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/> 
-            
+            <button onClick={() => setName('luigi')}>change name</button>
+            <p>{ name }</p>
         </div>
     );
 }
