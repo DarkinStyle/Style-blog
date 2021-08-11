@@ -7,7 +7,7 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setTimeout(() => { // just to demostrate the loading message by set a timer
+        //setTimeout(() => { // just to demostrate the loading message by set a timer
             fetch(url) // fetching it from resources as a promise
             .then(res => {
                 
@@ -17,7 +17,7 @@ const useFetch = (url) => {
                 return res.json();
             })
             .then((data) => {
-                setData(data);
+                setData(data.Search);
                 setIsPending(false); 
                 setError(null);
             })
@@ -25,7 +25,7 @@ const useFetch = (url) => {
                 setIsPending(false);
                 setError(err.message);
             })
-        }, 1000);
+        //}, 1000);
     }, [url]); 
 
 
